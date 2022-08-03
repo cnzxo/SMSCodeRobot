@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ApiModelConfig(AppConfig):
+class WebModelConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'APIModel'
+    name = 'WebModel'
