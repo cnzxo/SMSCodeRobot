@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    {% comment %}path{% endcomment %}
+    <ol class="breadcrumb">
+        <li><a href="/#">Home</a></li>
+        <li class="active">Number List</li>
+    </ol>
+    {% comment %}content{% endcomment %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Number List</h3>
+        </div>
+        <table class="numbers table table-hover">
+            <thead>
+            <tr>
+                <th>Number</th>
+                <th>Time</th>
+                <th>Address</th>
+                <th>Count</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    {% comment %}javascript{% endcomment %}
+    <script>
+        $(function () {
+            let country = 'usa';
+            let country_param = $.getUrlParam('country');
+            if (country_param !== null) {
+                country = country_param;
+            }
+            $.get('/api/numbers?country=' + country, function (e) {
+                if (Array.isArray(e) === false) {
+                    alert(e);
+                }
+                let numbers = $('.numbers tbody');
+                $.each(e, function (index, number) {
+                    let html = '<tr>' +
+                        '<td>' + number.phone + '</td>' +
+                        '<td>' + number.time + '</td>' +
+                        '<td>' + number.address + '</td>' +
+                        '<td>' + number.count + '</td>' +
+                        '</tr>';
+                    numbers.append(html);
+                })
+            })
+        })
+    </script>
+
+{% endblock %}

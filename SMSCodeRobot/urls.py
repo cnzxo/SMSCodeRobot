@@ -16,12 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-import APIModel
 import WebModel
 from WebModel import views
 
+import WebModelA
+from WebModelA import views
+
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('', WebModel.views.index),
-    path('api/', include('APIModel.urls')),
+
+    # path('', WebModel.views.index),
+    # path('web/', include('WebModel.urls')),
+    # path('api/', include('APIModel.urls')),
+
+    path('', WebModelA.views.index),
+    path('web/', include('WebModelA.urls')),
+    path('api/', include('APIModelA.urls')),
 ]

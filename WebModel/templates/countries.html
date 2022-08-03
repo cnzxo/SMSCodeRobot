@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    {% comment %}path{% endcomment %}
+    <ol class="breadcrumb">
+        <li><a href="/#">Home</a></li>
+        <li class="active">Country List</li>
+    </ol>
+    {% comment %}content{% endcomment %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Country List</h3>
+        </div>
+        <div class="countries list-group"></div>
+    </div>
+    {% comment %}javascript{% endcomment %}
+    <script>
+        $(function () {
+            $.get('/api/countries', function (e) {
+                if (Array.isArray(e) === false) {
+                    alert(e);
+                }
+                let countries = $('.countries');
+                $.each(e, function (index, country) {
+                    let html = '<a href="/web/numbers?country=' + country.value + '" class="list-group-item">' + country.title + '</a>';
+                    countries.append(html);
+                })
+            })
+        })
+    </script>
+
+{% endblock %}
