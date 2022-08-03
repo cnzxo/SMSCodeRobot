@@ -4,45 +4,56 @@
     {% comment %}path{% endcomment %}
     <ol class="breadcrumb">
         <li><a href="/#">Home</a></li>
-        <li class="active">Number List</li>
+        <li class="active">All Numbers</li>
     </ol>
+
     {% comment %}content{% endcomment %}
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Number List</h3>
         </div>
-        <table class="numbers table table-hover">
-            <thead>
-            <tr>
+        <div class="loading panel-body text-center">加载中。。。</div>
+        <div class="numbers panel-body" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                <th>No</th>
                 <th>Number</th>
-                <th>Time</th>
-                <th>Address</th>
-                <th>Count</th>
-            </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+                <th>Country</th>
+                <th>Operation</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
+
     {% comment %}javascript{% endcomment %}
     <script>
         $(function () {
-            let country = 'usa';
-            let country_param = $.getUrlParam('country');
-            if (country_param !== null) {
-                country = country_param;
+            $('.loading').show();
+            let url = '/api/numbers/';
+            let country = $.getUrlParam('country');
+            if (country !== null) {
+                url += country;
             }
-            $.get('/api/numbers?country=' + country, function (e) {
+            $.get(url, function (e) {
                 if (Array.isArray(e) === false) {
                     alert(e);
+                    return false;
                 }
-                let numbers = $('.numbers tbody');
-                $.each(e, function (index, number) {
+                $('.loading').hide();
+                $('.numbers').show();
+                let numbers = $('.numbers>table>tbody');
+                let no = 1;
+                $.each(e, function (index, item) {
                     let html = '<tr>' +
-                        '<td>' + number.phone + '</td>' +
-                        '<td>' + number.time + '</td>' +
-                        '<td>' + number.address + '</td>' +
-                        '<td>' + number.count + '</td>' +
+                        '<td>' + no + '</td>' +
+                        '<td>' + item.number + '</td>' +
+                        '<td>' + item.country + '</td>' +
+                        '<td><a href="/web/messages?number=' + item.number + '">view</></td>' +
                         '</tr>';
+                    no += 1;
                     numbers.append(html);
                 })
             })

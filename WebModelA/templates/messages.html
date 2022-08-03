@@ -4,49 +4,56 @@
     {% comment %}path{% endcomment %}
     <ol class="breadcrumb">
         <li><a href="/#">Home</a></li>
-        <li class="active">All Countries</li>
+        <li class="active">All Messages</li>
     </ol>
-
     {% comment %}content{% endcomment %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Country List</h3>
+            <h3 class="panel-title">Message List</h3>
         </div>
         <div class="loading panel-body text-center">加载中。。。</div>
-        <div class="countries panel-body" style="display: none;">
+        <div class="messages panel-body" style="display: none;">
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Country</th>
-                    <th>Operation</th>
+                <th>No</th>
+                <th>From</th>
+                <th>Message</th>
+                <th>DateTime</th>
                 </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </div>
     </div>
-
     {% comment %}javascript{% endcomment %}
     <script>
         $(function () {
-            $.get('/api/countries', function (e) {
+            let number = $.getUrlParam('number');
+            if (number === null) {
+                alert('Missing parameter number.')
+                return false;
+            }
+            $.get('/api/messages/' + number, function (e) {
                 if (Array.isArray(e) === false) {
                     alert(e);
                     return false;
                 }
                 $('.loading').hide();
-                $('.countries').show();
-                let countries = $('.countries>table>tbody');
+                $('.messages').show();
+                let messages = $('.messages>table>tbody');
                 let no = 1;
                 $.each(e, function (index, item) {
+                    let timestamp = new Date(item.time);
+                    console.log(timestamp, timestamp.format('yyyy-MM-dd hh:mm:ss'));
                     let html = '<tr>' +
                         '<td>' + no + '</td>' +
-                        '<td>' + item.country + '</td>' +
-                        '<td><a href="/web/numbers?country=' + item.code + '">view</></td>' +
+                        '<td>' + item.from + '</td>' +
+                        '<td>' + item.message + '</td>' +
+                        '<td>' + item.time + '</td>' +
                         '</tr>';
                     no += 1;
-                    countries.append(html);
+                    messages.append(html);
                 })
             })
         })
