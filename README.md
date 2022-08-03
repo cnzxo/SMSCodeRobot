@@ -39,11 +39,23 @@ python manage.py runserver 80
 
 ```python
 django-4.0.6
+beautifulsoup4-4.11.1
+requests-2.28.1
 ```
 
 ## API
 
-### Interface 1
+### 1、Country List
+
+URL：
+
+> http://127.0.0.1/api/countries
+
+Method：
+
+> GET
+
+### 2、Number List
 
 URL：
 
@@ -51,11 +63,28 @@ URL：
 
 Method：
 
+> GET
+
+Parameters：
+
+| Name    | Value | Default | Required / Optional |
+|---------|-------|---------|---------------------|
+| country | -     | usa     | Optional            |
+
+### 2、Number List
+
+URL：
+
+> http://127.0.0.1/api/info
+
+Method：
+
 > GET / POST
 
 Parameters：
 
-| Name    | Value      | Default | Required / Optional |
-|---------|------------|---------|---------------------|
-| country | usa、canada | usa     | Optional            |
+| Name   | Value | Default | Required / Optional |
+|--------|-------|---------|---------------------|
+| number | -     | -       | Required            |
+| page   | -     | 1       | Optional            |
 
