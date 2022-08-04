@@ -11,10 +11,13 @@ def index(request):
 
 def countries(request):
     url = 'https://sms24.info/en/countries/'
-    html = http_request_get(url)
-    if html.status_code != 200:
+    response = http_request_get(url)
+    response_status_code = response.status_code
+    response_content = response.text
+    response.close()
+    if response_status_code != 200:
         return HttpResponse('Request failure.')
-    soup = BeautifulSoup(html.text, 'html.parser')
+    soup = BeautifulSoup(response_content, 'html.parser')
     html_div = soup.select('.card .container-fluid>.row')[0]
     html_list = html_div.select('div>a')
     res_list = []
@@ -35,10 +38,13 @@ def countries(request):
 
 def numbers(request):
     url = 'https://sms24.info/en/numbers/'
-    html = http_request_get(url)
-    if html.status_code != 200:
+    response = http_request_get(url)
+    response_status_code = response.status_code
+    response_content = response.text
+    response.close()
+    if response_status_code != 200:
         return HttpResponse('Request failure.')
-    soup = BeautifulSoup(html.text, 'html.parser')
+    soup = BeautifulSoup(response_content, 'html.parser')
     html_list = soup.select('.card .container-fluid>.row div>a')
     res_list = []
     for html_list_item in html_list:
@@ -57,10 +63,13 @@ def numbers(request):
 
 def numbers_by_country(request, country):
     url = 'https://sms24.info/en/countries/{}/'.format(country)
-    html = http_request_get(url)
-    if html.status_code != 200:
+    response = http_request_get(url)
+    response_status_code = response.status_code
+    response_content = response.text
+    response.close()
+    if response_status_code != 200:
         return HttpResponse('Request failure.')
-    soup = BeautifulSoup(html.text, 'html.parser')
+    soup = BeautifulSoup(response_content, 'html.parser')
     html_div = soup.select('.card .container-fluid>.row')[0]
     html_list = html_div.select('div>a')
     res_list = []
@@ -80,11 +89,13 @@ def numbers_by_country(request, country):
 
 def messages_by_number(request, number):
     url = 'https://sms24.info/en/numbers/{}/'.format(number)
-    print(url)
-    html = http_request_get(url)
-    if html.status_code != 200:
+    response = http_request_get(url)
+    response_status_code = response.status_code
+    response_content = response.text
+    response.close()
+    if response_status_code != 200:
         return HttpResponse('Request failure.')
-    soup = BeautifulSoup(html.text, 'html.parser')
+    soup = BeautifulSoup(response_content, 'html.parser')
     html_list = soup.select('.card .container-fluid>.row>.col-12')
     res_list = []
     for html_list_item in html_list:

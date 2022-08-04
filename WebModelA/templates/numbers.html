@@ -1,5 +1,7 @@
 {% extends 'layout.html' %}
 
+{% load static %}
+
 {% block content %}
     {% comment %}path{% endcomment %}
     <ol class="breadcrumb">
@@ -8,24 +10,23 @@
     </ol>
 
     {% comment %}content{% endcomment %}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Number List</h3>
+    <div class="loading row">
+        <div class="col-md-4 col-md-offset-4">
+            <img src="{% static 'img/loading.gif' %}" alt="loading" style="width: 100%;">
         </div>
-        <div class="loading panel-body text-center">加载中。。。</div>
-        <div class="numbers panel-body" style="display: none;">
-            <table class="table table-hover">
-                <thead>
-                <tr>
+    </div>
+    <div class="numbers" style="display: none;">
+        <table class="table table-hover">
+            <thead>
+            <tr>
                 <th>No</th>
                 <th>Number</th>
                 <th>Country</th>
                 <th>Operation</th>
-                </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
 
     {% comment %}javascript{% endcomment %}

@@ -8,5 +8,6 @@ urlpatterns = [
     path('countries/', WebModelA.views.countries),
     path('numbers/', WebModelA.views.numbers),
     path('messages/', WebModelA.views.messages),
+    path('documents/', WebModelA.views.documents),
     path('privacy/', WebModelA.views.privacy),
 ]

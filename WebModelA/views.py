@@ -20,5 +20,9 @@ def messages(request):
     return render(request, 'messages.html')
 
 
+def documents(request):
+    return render(request, 'documents.html')
+
+
 def privacy(request):
     return render(request, 'privacy.html')

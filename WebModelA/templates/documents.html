@@ -1,0 +1,125 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    {% comment %}style{% endcomment %}
+    <style>
+        blockquote {
+            border-left: 5px solid #00785a;
+        }
+    </style>
+
+    {% comment %}path{% endcomment %}
+    <ol class="breadcrumb">
+        <li><a href="/#">Home</a></li>
+        <li class="active">Documents</li>
+    </ol>
+
+    {% comment %}content{% endcomment %}
+    <div class="documents">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div>
+                    <h2>Get all countries</h2>
+                </div>
+                <hr>
+                <div>
+                    <span class="label label-primary">HTTPS</span>
+                    <span class="label label-success">GET</span>
+                </div>
+                <div>
+                    <h3>https://sms.cnzxo.com/api/countries/</h3>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div>
+                    <h2>Get all numbers</h2>
+                </div>
+                <hr>
+                <div>
+                    <span class="label label-primary">HTTPS</span>
+                    <span class="label label-success">GET</span>
+                    <span class="label label-info">UTF-8</span>
+                </div>
+                <div>
+                    <h3>https://sms.cnzxo.com/api/numbers/</h3>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div>
+                    <h2>Get all numbers by country</h2>
+                </div>
+                <hr>
+                <div>
+                    <span class="label label-primary">HTTPS</span>
+                    <span class="label label-success">GET</span>
+                    <span class="label label-info">UTF-8</span>
+                </div>
+                <div>
+                    <h3>https://sms.cnzxo.com/api/numbers/{country}/</h3>
+                </div>
+                <div>
+                    <blockquote>Parameters</blockquote>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Type</td>
+                            <td>Required</td>
+                            <td>Remarks</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>country</td>
+                            <td>[string]</td>
+                            <td>Yes</td>
+                            <td>submit a country name</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div>
+                    <h2>Get all messages by number</h2>
+                </div>
+                <hr>
+                <div>
+                    <span class="label label-primary">HTTPS</span>
+                    <span class="label label-success">GET</span>
+                    <span class="label label-info">UTF-8</span>
+                </div>
+                <div>
+                    <h3>https://sms.cnzxo.com/api/messages/{number}/</h3>
+                </div>
+                <div>
+                    <blockquote>Parameters</blockquote>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Type</td>
+                            <td>Required</td>
+                            <td>Remarks</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>number</td>
+                            <td>[string]</td>
+                            <td>Yes</td>
+                            <td>submit a number</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
