@@ -1,28 +1,63 @@
 {% extends 'layout.html' %}
 
+{% load static %}
+
 {% block content %}
+    {% comment %}style{% endcomment %}
+    <style>
+        .country {
+            padding-left: 30px;
+            background-size: 20px 20px;
+            background-repeat: no-repeat !important;
+        }
+    </style>
+
     {% comment %}path{% endcomment %}
     <ol class="breadcrumb">
         <li><a href="/#">Home</a></li>
-        <li class="active">Country List</li>
+        <li class="active">All Countries</li>
     </ol>
+
     {% comment %}content{% endcomment %}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Country List</h3>
+    <div class="loading row">
+        <div class="col-md-4 col-md-offset-4">
+            <img src="{% static 'img/loading.gif' %}" alt="loading" style="width: 100%;">
         </div>
-        <div class="countries list-group"></div>
     </div>
+    <div class="countries" style="display: none;">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Country</th>
+                <th>Code</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
     {% comment %}javascript{% endcomment %}
     <script>
         $(function () {
             $.get('/api/countries', function (e) {
                 if (Array.isArray(e) === false) {
                     alert(e);
+                    return false;
                 }
-                let countries = $('.countries');
-                $.each(e, function (index, country) {
-                    let html = '<a href="/web/numbers?country=' + country.value + '" class="list-group-item">' + country.title + '</a>';
+                $('.loading').hide();
+                $('.countries').show();
+                let countries = $('.countries>table>tbody');
+                let no = 1;
+                $.each(e, function (index, item) {
+                    let html = '<tr>' +
+                        '<td>' + no + '</td>' +
+                        '<td><span class="country" style="background: url(' + item.image + ')">' + item.country + '</span></td>' +
+                        '<td>' + item.code + '</td>' +
+                        '<td><a href="/web/numbers?country=' + item.code + '">view</></td>' +
+                        '</tr>';
+                    no += 1;
                     countries.append(html);
                 })
             })

@@ -6,6 +6,10 @@
         blockquote {
             border-left: 5px solid #00785a;
         }
+
+        h3 {
+            word-break: break-all;
+        }
     </style>
 
     {% comment %}path{% endcomment %}
@@ -25,6 +29,7 @@
                 <div>
                     <span class="label label-primary">HTTPS</span>
                     <span class="label label-success">GET</span>
+                    <span class="label label-info">UTF-8</span>
                 </div>
                 <div>
                     <h3>https://sms.cnzxo.com/api/countries/</h3>
@@ -62,7 +67,7 @@
                     <h3>https://sms.cnzxo.com/api/numbers/{country}/</h3>
                 </div>
                 <div>
-                    <blockquote>Parameters</blockquote>
+                    <blockquote>REST Parameters</blockquote>
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
@@ -99,7 +104,7 @@
                     <h3>https://sms.cnzxo.com/api/messages/{number}/</h3>
                 </div>
                 <div>
-                    <blockquote>Parameters</blockquote>
+                    <blockquote>REST Parameters</blockquote>
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr>

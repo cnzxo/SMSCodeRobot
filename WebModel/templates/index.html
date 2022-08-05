@@ -1,9 +1,132 @@
 {% extends 'layout.html' %}
 
+{% load static %}
+
 {% block content %}
+    {% comment %}style{% endcomment %}
+    <style>
+        .animate {
+            -webkit-transition: all .3s ease-out;
+        }
+
+        .notices {
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            height: 30px;
+        }
+
+        .notices ul {
+            transform: translateY(0);
+            padding: 0;
+            margin: 0;
+        }
+
+        .notices li {
+            list-style: none;
+            overflow: hidden;
+            display: -webkit-box;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            white-space: normal;
+        }
+
+        .notices li img {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+
+    {% comment %}notices{% endcomment %}
+    <div class="notices">
+        <ul>
+            <li>
+                <img src="{% static 'img/notice.png' %}" alt=""/>
+                <span>Please do not use it for illegal purposes!</span>
+            </li>
+            <li>
+                <img src="{% static 'img/notice.png' %}" alt=""/>
+                <span>The Internet is not an illegal place!</span>
+            </li>
+        </ul>
+    </div>
+
+    {% comment %}content{% endcomment %}
     <div class="jumbotron">
         <h1>Hello, world!</h1>
         <p>Welcome to the SMS verification code robot platform!</p>
         <p><a class="btn btn-primary btn-lg" href="/web/countries" role="button">Get started</a></p>
     </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">About Us</div>
+        </div>
+        <div class="panel-body">
+            <h2>Do you want to receive messages from different countries?</h2>
+            <p>Are you looking for a temporary phone number generator that you can receive
+                SMS verification texts in a matter of seconds?<br>
+                Then browse no more!<br>
+                SMS Code Robot is the best phone number generator with SMS service that users of hundreds of different
+                countries can use to generate local fake
+                phone numbers for verification purposes.<br>Simply click on the country you want a temp phone number
+                for, select a temporary phone number and use that number on any application or service and receive OTPs
+                on our website!</p>
+            <h2>Temporary Mobile Numbers - Free, Easier, and Faster Than Ever!</h2>
+            <p>Unlike other online SMS verification phone number generators, SMS Code Robot is the fastest disposable
+                number
+                service you’ll find.</p>
+            <p>Not only is our servers fast enough to enable you to receive free SMS online in a matter of seconds,
+                but we also offer hundreds of numbers for each country available on our website.</p>
+            <p>No matter where you are, you can get a temp phone number within just a couple of clicks for any
+                country that you desire!</p>
+            <h2>Why Use Temporary Phone Number Generators?</h2>
+            <p>Using your personal phone number for verification purposes can pose different security threats to
+                you. Many hacking techniques steal personal information you list online while some applications
+                automatically subscribe you for spam messages.</p>
+            <p>To keep your personal number safe from hackers, always use our phone number generator with SMS as a
+                fake number for verification of OTP.</p>
+            <p>This not only helps your personal phone number be safe and secure but also enables you to receive
+                free SMS online instantly, wasting no more than just a couple of seconds for processing!</p>
+            <p>If the fake phone number for verification that you choose doesn’t work, it could be that the specific
+                disposable number is crowded.</p>
+            <p>Simply go back and choose a different phone number and everything should work fine!</p>
+        </div>
+    </div>
+
+    {% comment %}javascript{% endcomment %}
+    <script>
+        $(function () {
+            let scrollDiv = $(".notices"),
+                $ul = scrollDiv.find("ul"),
+                $li = scrollDiv.find("li"),
+                $length = $li.length,
+                $liHeight = $li.height(),
+                index = 0;
+            if (scrollDiv.length === 0) {
+                return;
+            }
+
+            if ($length > 1) {
+                $ul.append($li.eq(0).clone());
+                setInterval(
+                    function () {
+                        index++;
+                        $ul.addClass("animate").css("-webkit-transform", "translateY(-" + $liHeight * (index) + "px)");
+                        setTimeout(
+                            function () {
+                                if (index === $length) {
+                                    $ul.removeClass("animate").css("-webkit-transform", "translateY(0)");
+                                    index = 0;
+                                }
+                                console.log(index);
+                            }, 300);
+                    }, 4000);
+            }
+        });
+    </script>
 {% endblock %}
