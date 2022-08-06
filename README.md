@@ -6,7 +6,7 @@
 
 > Project Name: SMS Code Robot
 > 
-> Description: This is a sms code receive website.
+> Description: This is a sms code receive website project.
 > 
 > Author Name: cnzxo
 > 
