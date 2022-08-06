@@ -10,7 +10,7 @@ This is a sms code receive website.
 
 https://sms24.info/
 
-https://smsreceivefree.com/
+~~https://smsreceivefree.com/~~
 
 ## Files description
 
@@ -26,32 +26,21 @@ wsgi.py  # Asynchronous network request.
 
 ```python
 # Create a project by django-admin command.
-django - admin
-startproject
-SMSCodeRobot
+django-admin startproject SMSCodeRobot
 # Create an application to the project.
-django - admin
-startapp
-APIModel
+django-admin startapp APIModel
 # Generate requirement files.
-pip
-freeze > requirements.txt
+pip freeze > requirements.txt
 # Run project.
-python
-manage.py
-runserver
-80
+python manage.py runserver 80
 ```
 
 ## Requirements
 
 ```python
-django - 4.0
-.6
-beautifulsoup4 - 4.11
-.1
-requests - 2.28
-.1
+django - 4.0.6
+beautifulsoup4 - 4.11.1
+requests - 2.28.1
 ```
 
 ## API
