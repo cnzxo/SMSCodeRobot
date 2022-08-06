@@ -38,9 +38,9 @@ python manage.py runserver 80
 ## Requirements
 
 ```python
-django - 4.0.6
-beautifulsoup4 - 4.11.1
-requests - 2.28.1
+django-4.0.6
+beautifulsoup4-4.11.1
+requests-2.28.1
 ```
 
 ## API
