@@ -24,6 +24,11 @@
             <img src="{% static 'img/loading.gif' %}" alt="loading" style="width: 100%;">
         </div>
     </div>
+    <div class="empty" style="display: none;">
+        <div class="col-md-4 col-md-offset-4">
+            <img src="{% static 'img/empty.png' %}" alt="loading" style="width: 100%;">
+        </div>
+    </div>
     <div class="countries" style="display: none;">
         <table class="table table-hover">
             <thead>
@@ -42,11 +47,12 @@
     <script>
         $(function () {
             $.get('/api/countries', function (e) {
+                $('.loading').hide();
                 if (Array.isArray(e) === false) {
                     alert(e);
+                    $('.empty').show();
                     return false;
                 }
-                $('.loading').hide();
                 $('.countries').show();
                 let countries = $('.countries>table>tbody');
                 let no = 1;
