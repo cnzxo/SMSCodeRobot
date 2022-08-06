@@ -26,65 +26,84 @@ wsgi.py  # Asynchronous network request.
 
 ```python
 # Create a project by django-admin command.
-django-admin startproject SMSCodeRobot
+django - admin
+startproject
+SMSCodeRobot
 # Create an application to the project.
-django-admin startapp APIModel
+django - admin
+startapp
+APIModel
 # Generate requirement files.
-pip freeze > requirements.txt
+pip
+freeze > requirements.txt
 # Run project.
-python manage.py runserver 80
+python
+manage.py
+runserver
+80
 ```
 
 ## Requirements
 
 ```python
-django-4.0.6
-beautifulsoup4-4.11.1
-requests-2.28.1
+django - 4.0
+.6
+beautifulsoup4 - 4.11
+.1
+requests - 2.28
+.1
 ```
 
 ## API
 
-### 1、Country List
+### 1、Get all countries
 
 URL：
 
-> http://127.0.0.1/api/countries
+> /api/countries
 
 Method：
 
 > GET
 
-### 2、Number List
+### 2、Get all numbers
 
 URL：
 
-> http://127.0.0.1/api/numbers
+> /api/numbers
 
 Method：
 
 > GET
 
-Parameters：
-
-| Name    | Value | Default | Required / Optional |
-|---------|-------|---------|---------------------|
-| country | -     | usa     | Optional            |
-
-### 2、Number List
+### 3、Get all numbers by country name
 
 URL：
 
-> http://127.0.0.1/api/info
+> /api/numbers/{country}/
 
 Method：
 
-> GET / POST
+> GET
 
-Parameters：
+REST Parameters：
 
-| Name   | Value | Default | Required / Optional |
-|--------|-------|---------|---------------------|
-| number | -     | -       | Required            |
-| page   | -     | 1       | Optional            |
+| Name    | Value | Required | Remark                |
+|---------|-------|----------|-----------------------|
+| country | -     | Yes      | submit a country name |
 
+### 4、Get all messages by number
+
+URL：
+
+> /api/messages/{number}/
+
+Method：
+
+> GET
+
+REST Parameters：
+
+| Name   | Value | Required | Remark          |
+|--------|-------|----------|-----------------|
+| number | -     | Yes      | submit a number |
