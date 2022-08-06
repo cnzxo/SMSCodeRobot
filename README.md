@@ -4,9 +4,15 @@
 
 ## About Us
 
-This is a sms code receive website.
+> Project Name: SMS Code Robot
+> 
+> Description: This is a sms code receive website.
+> 
+> Author Name: cnzxo
+> 
+> Create Time: 2022-8-1 12:20:20
 
-## API Address
+## Data source
 
 https://sms24.info/
 
